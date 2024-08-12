@@ -1,9 +1,0 @@
-/node_modules
-/dist
-/public/*
-/.well-known
-/.env
-/package-lock.json
-/.externalToolBuilders/
-/.project
-/.settings/
