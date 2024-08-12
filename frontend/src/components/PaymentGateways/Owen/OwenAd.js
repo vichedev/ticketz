@@ -27,16 +27,17 @@ export default function OwenAd(props) {
   return (
     <>
       <Typography variant="h5" color="primary" gutterBottom>
-        Owen Payments apoia o Ticketz
+        Owen Payments apoya a Wbot
       </Typography>    
-      <Typography variant="body1">A startup Owen Payments oferece
-      recebimentos via PIX a custo fixo de R$ 0,99 por operação.</Typography>
-      <Typography variant="body1">Uma fração do valor de cada operação é
-      revertida para o projeto Ticketz, então ao utilizar este
-      meio de recebimento você também estará apoiando o projeto.</Typography>
-      <Typography variant="body1">Selecione o gateway de pagamento 
-      "Owen Payments 💎" e solicite a abertura da sua conta
-      sem sair do Ticketz!</Typography>
+      <Typography variant="body1">La startup Owen Payments ofrece
+      pagos a través de PIX a un costo fijo de R$ 0,99 por operación.</Typography>
+      <Typography variant="body1">Una fracción del valor de cada operación
+      se destina al proyecto Ticketz, así que al utilizar este medio de pago
+      también estarás apoyando el proyecto.</Typography>
+      <Typography variant="body1">Selecciona el gateway de pago 
+      "Owen Payments 💎" y solicita la apertura de tu cuenta
+      sin salir de Ticketz!</Typography>
     </>
   );
+
 }

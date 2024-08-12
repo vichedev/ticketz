@@ -46,7 +46,7 @@ const wbotMonitor = async (
 
         if (sendMsgCall.value === "disabled") {
           await wbot.sendMessage(node.attrs.from, {
-            text: "\u200e*Mensagem Automática:*\n\nAs chamadas de voz e vídeo estão desabilitas para esse WhatsApp, favor enviar uma mensagem de texto. Obrigado"
+            text: "\u200e*Mensaje automático:*\n\ Las llamadas de voz y video están deshabilitadas para este WhatsApp, envíe un mensaje de texto. Gracias"
           });
 
           const number = node.attrs.from.replace(/\D/g, "");
@@ -70,7 +70,7 @@ const wbotMonitor = async (
           const hours = date.getHours();
           const minutes = date.getMinutes();
 
-          const body = `Chamada de voz/vídeo perdida às ${hours}:${minutes}`;
+          const body = `llamada de voz/vídeo perdido en ${hours}:${minutes}`;
           const messageData = {
             id: content.attrs["call-id"],
             ticketId: ticket.id,

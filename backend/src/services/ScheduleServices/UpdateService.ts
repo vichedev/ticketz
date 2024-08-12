@@ -29,7 +29,7 @@ const UpdateUserService = async ({
   const schedule = await ShowService(id, companyId);
 
   if (schedule?.companyId !== companyId) {
-    throw new AppError("Não é possível alterar registros de outra empresa");
+    throw new AppError("No es posible cambiar registros para otra empresa.");
   }
 
   const schema = Yup.object().shape({

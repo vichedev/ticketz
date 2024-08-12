@@ -147,7 +147,7 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
       viewOnceMessage: getBodyButton(msg) || msg.message?.listResponseMessage?.singleSelectReply?.selectedRowId,
       viewOnceMessageV2: msg.message?.viewOnceMessageV2?.message?.imageMessage?.caption || "",
       stickerMessage: "sticker",
-      contactMessage: 
+      contactMessage:
         msg.message?.contactMessage?.vcard &&
         JSON.stringify(
           {
@@ -278,7 +278,7 @@ const getUnpackedMessage = (msg: proto.IWebMessageInfo) => {
 }
 
 const getMessageMedia = (message: proto.IMessage) => {
-  return ( 
+  return (
       message?.imageMessage ||
       message?.audioMessage ||
       message?.videoMessage ||
@@ -290,7 +290,7 @@ const getMessageMedia = (message: proto.IMessage) => {
 const downloadMedia = async (msg: proto.IWebMessageInfo, wbot: Session, ticket: Ticket) => {
   const unpackedMessage = getUnpackedMessage(msg);
   const message = getMessageMedia(unpackedMessage);
-  
+
   if (!message) {
     return null;
   }
@@ -298,15 +298,15 @@ const downloadMedia = async (msg: proto.IWebMessageInfo, wbot: Session, ticket: 
   const fileLimit = parseInt(await CheckSettings("downloadLimit", "15"), 10);
   if (wbot && message?.fileLength && +message.fileLength > fileLimit*1024*1024) {
     const fileLimitMessage = {
-      text: `\u200e*Mensagem Automática*:\nNosso sistema aceita apenas arquivos com no máximo ${fileLimit} MiB`
+      text: `\u200e*Mensaje automático*:\nNuestro sistema sólo acepta archivos con un máximo de ${fileLimit} MiB`
     };
-    
+
     const sendMsg = await wbot.sendMessage(
       `${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       fileLimitMessage
     );
 
-    sendMsg.message.extendedTextMessage.text = "\u200e*Mensagem do sistema*:\nArquivo recebido além do limite de tamanho do sistema, se for necessário ele pode ser obtido no aplicativo do whatsapp.";
+    sendMsg.message.extendedTextMessage.text = "\u200e*Mensaje del sistema*:\nArchivo recibido más allá del límite de tamaño del sistema, si es necesario se puede obtener desde la aplicación WhatsApp.";
 
     // eslint-disable-next-line no-use-before-define
     await verifyMessage(sendMsg, ticket, ticket.contact);
@@ -314,7 +314,7 @@ const downloadMedia = async (msg: proto.IWebMessageInfo, wbot: Session, ticket: 
   }
 
   // eslint-disable-next-line no-nested-ternary
-  const messageType = unpackedMessage?.documentMessage 
+  const messageType = unpackedMessage?.documentMessage
     ? "document"
     : message.mimetype.split("/")[0].replace("application", "document")
       ? (message.mimetype
@@ -383,7 +383,7 @@ const downloadMedia = async (msg: proto.IWebMessageInfo, wbot: Session, ticket: 
   const endTime = Date.now();
   const durationInSeconds = (endTime - startTime) / 1000;
   const effectiveSpeed = totalSize / durationInSeconds; // bytes per second
-  logger.debug(`${filename} Download completed in ${durationInSeconds.toFixed(2)} seconds with an effective speed of ${(effectiveSpeed / 1024 / 1024).toFixed(2)} MBps`);
+  logger.debug(`${filename} Descarga completada en ${durationInSeconds.toFixed(2)} segundos con una velocidad efectiva de ${(effectiveSpeed / 1024 / 1024).toFixed(2)} MBps`);
 
   if (!buffer) {
     Sentry.setExtra("ERR_WAPP_DOWNLOAD_MEDIA", { msg });
@@ -736,14 +736,14 @@ const isValidMsg = (msg: proto.IWebMessageInfo): boolean => {
       msgType === "protocolMessage" ||
       msgType === "listResponseMessage" ||
       msgType === "listMessage" ||
-      msgType === "viewOnceMessage" || 
+      msgType === "viewOnceMessage" ||
       msgType === "viewOnceMessageV2";
 
     if (!ifType) {
       logger.warn(`#### Nao achou o type em isValidMsg: ${msgType}
 ${JSON.stringify(msg?.message)}`);
       Sentry.setExtra("Mensagem", { BodyMsg: msg.message, msg, msgType });
-      Sentry.captureException(new Error("Novo Tipo de Mensagem em isValidMsg"));
+      Sentry.captureException(new Error("Nuevo tipo de mensaje en isValidMsg"));
     }
 
     return !!ifType;
@@ -783,7 +783,7 @@ const sendMenu = async (
       });
     });
     sectionsRows.push({
-      title: "Voltar Menu Inicial",
+      title: "Volver al Menu Inicial",
       rowId: "#"
     });
     const sections = [
@@ -817,7 +817,7 @@ const sendMenu = async (
     });
     buttons.push({
       buttonId: "#",
-      buttonText: { displayText: "Voltar Menu Inicial" },
+      buttonText: { displayText: "Volver al Menu Inicial" },
       type: 4
     });
 
@@ -841,7 +841,7 @@ const sendMenu = async (
     currentOption.options.forEach((option) => {
       options += `*[ ${option.option} ]* - ${option.title}\n`;
     });
-    options += "\n*[ # ]* - Voltar Menu Inicial";
+    options += "\n*[ # ]* - Volver al Menu Inicial";
 
     const textMessage = {
       text: formatBody(`\u200e${message}\n\n${options}`, ticket.contact),
@@ -1237,7 +1237,7 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
       const contact = await Contact.findByPk(ticket.contactId);
       if (whatsapp.transferMessage) {
         const body = formatBody(`\u200e${whatsapp.transferMessage}`, contact);
-        await SendWhatsAppMessage({ body, ticket });        
+        await SendWhatsAppMessage({ body, ticket });
       }
     }
   }
@@ -1331,7 +1331,7 @@ const handleMessage = async (
           key: "CheckMsgIsGroup",
         },
       });
-      
+
       if ( !msgIsGroupBlock || msgIsGroupBlock.value === "enabled") {
         return;
       }
@@ -1474,7 +1474,7 @@ const handleMessage = async (
     } else {
       await verifyMessage(msg, ticket, contact);
     }
-    
+
     if (contact.disableBot) {
       return;
     }

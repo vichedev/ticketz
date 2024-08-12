@@ -16,7 +16,7 @@ const UpdateSettingService = async ({
     where: {
       key,
       companyId
-    }, 
+    },
     defaults: {
       key,
       value,
@@ -25,7 +25,7 @@ const UpdateSettingService = async ({
   });
 
   if (setting != null && setting?.companyId !== companyId) {
-    throw new AppError("Não é possível consultar registros de outra empresa");
+    throw new AppError("No es posible consultar registros de otra empresa");
   }
 
   if (!setting) {

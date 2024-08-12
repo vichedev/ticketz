@@ -8,7 +8,7 @@ const ShowContactService = async (
   const contact = await Contact.findByPk(id, { include: ["extraInfo"] });
 
   if (contact?.companyId !== companyId) {
-    throw new AppError("Não é possível excluir registro de outra empresa");
+    throw new AppError("No es posible eliminar el registro de otra empresa.");
   }
 
   if (!contact) {

@@ -35,7 +35,7 @@ const UpdateContactService = async ({
   });
 
   if (contact?.companyId !== companyId) {
-    throw new AppError("Não é possível alterar registros de outra empresa");
+    throw new AppError("No es posible cambiar registros para otra empresa.");
   }
 
   if (!contact) {

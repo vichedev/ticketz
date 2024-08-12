@@ -152,7 +152,7 @@ export default function OwenSettings(props) {
       </Typography>
       { !showCreateForm &&
       <>
-      <Typography><Link href="#" onClick={() => setShowCreateForm(true)}>Solicite aqui a abertura da sua conta</Link></Typography>
+      <Typography><Link href="#" onClick={() => setShowCreateForm(true)}>Solicite abrir su cuenta aquí</Link></Typography>
       <Grid spacing={3} container>
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.fieldContainer}>
@@ -213,11 +213,11 @@ export default function OwenSettings(props) {
         </Grid>
         <Grid xs={12} sm={3} md={12} item>
           <Typography variant="h5" color="primary" gutterBottom>
-            Configuração do Webhook
+          Configuración del webhook
           </Typography>
           <Typography variant="body1">
-            No painel de configurações da sua conta você precisa configurar o
-            webhook para o seguinte conteúdo:
+          En el panel de configuración de tu cuenta necesitas configurar el
+          webhook para el siguiente contenido:
           </Typography>
           <Typography variant="pre">
             {getBackendURL()}/subscription/ticketz/webhook
@@ -228,7 +228,7 @@ export default function OwenSettings(props) {
       }
       {showCreateForm &&
         <>
-          <Typography><Link href="#" onClick={() => setShowCreateForm(false)}>Já abriu sua conta? Clique aqui!</Link></Typography>
+          <Typography><Link href="#" onClick={() => setShowCreateForm(false)}>¿Ya has abierto tu cuenta? ¡Haga clic aquí!</Link></Typography>
         <Formik
           initialValues={createData}
           enableReinitialize={true}
